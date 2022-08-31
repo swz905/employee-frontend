@@ -1,0 +1,45 @@
+<div class="container-fluid mt-2">
+  <div id="myCarousel"  class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class = "carousel-item active">
+        <div class = "overlay-image" style="background-image:url(/assets/images/dev.jpg)"></div>
+        <div class = "container">
+          <h2>Learn Java</h2>
+          <p>Java is a high-level, class-based,
+            object-oriented programming language that is designed to have as few implementation dependencies as possible.</p>
+          <button type="button" class="btn rounded-pill btn-danger " routerLink="/signup">Sign Up</button>
+        </div>
+      </div>
+      <div class = "carousel-item">
+        <div class = "overlay-image" style="background-image:url(/assets/images/pytho.jpg)"></div>
+        <div class = "container">
+          <h2>Learn Python</h2>
+          <p>
+            Python is commonly used for developing websites and software, task automation,
+            data analysis, and data visualization. Since it's relatively easy to learn,
+            Python has been adopted by many non-programmers
+            such as accountants and scientists</p>
+          <button type="button" class="btn rounded-pill btn-light" routerLink="/login">Log in</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+
+  </div>
+</div>
+
+
+

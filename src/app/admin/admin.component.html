@@ -1,0 +1,32 @@
+
+<div class="container" style="height:30rem">
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="card mb-3 me-3" style="max-width: 25rem;">
+      <div class="card-header">Create Question</div>
+      <div class="card-body">
+        <h5 class="card-title">Create Question Here</h5>
+        <button class="btn btn-light " [routerLink]="['./add-question']">Create</button>
+        <button class="btn btn-light ms-3 " [routerLink]="['../admin']">Back</button>
+      </div>
+    </div>
+
+    <div class="card-1 rounded mb-3 me-3" style="max-width: 25rem;">
+      <div class="card-header">Show Employees</div>
+      <div class="card-body">
+        <h5 class="card-title">Show Employee Here</h5>
+        <button class="btn btn-light " (click)="showEmployees()">Show</button>
+        <button class="btn btn-light ms-3" (click)="hideEmployees()">Hide</button>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<div [hidden]="hideEmployeeList">
+  <app-allusers [name]="name"></app-allusers>
+</div>
+
+<hr class="bg-primary">
+<router-outlet></router-outlet>
+
+

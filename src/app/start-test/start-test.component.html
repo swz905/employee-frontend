@@ -1,0 +1,129 @@
+<div class="container" style="min-height: 73vh;">
+<div class="x container" >
+  <div class="row mt-5 d-flex justify-content-center me-3" *ngFor="let test of tests;let x = index">
+    <div [style.display]="test.attempted? 'none': 'block'"  class="card mb-3 me-3" style="width: 25rem;">
+      <div class="card-header">Java</div>
+      <div class="card-body">
+        <h5 class="card-title" #h5Tag>{{test.title}}</h5>
+        <button type="button" class="btn btn-light  "
+                data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="passIndex(x , h5Tag.innerText)">Start
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+</div>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Rules For The test</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <ul class="list-group">
+            <li >You Will Have Total 15 questions</li>
+            <li> Each Question has 1 minute time , so you will get a total of 15 minutes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="showQuestionForm()">Start Test</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container d-flex justify-content-center" >
+<div class="quiz_box" [hidden]="showQuiz" >
+  <form class="form-horizontal" #f="ngForm" (ngSubmit)="f.form.valid && submitTest() " name="form" >
+  <header class="quiz-box-header mt-3">
+    <div class="title">
+      Take You Test To Assess Yourself
+    </div>
+    <div class="timer">
+      <div class="time_text" >Time Left</div>
+      <div class="time_sec" >{{timeLeft |minuteSeconds}} </div>
+    </div>
+  </header>
+  <section >
+    <div class="que_text">
+      <span>{{showEachQuestions.title}}</span>
+    </div>
+    <div class="option_list">
+      <div class="option">
+        <label class="options">{{showEachQuestions.optionA}}
+          <input type="radio" name="radio" [(ngModel)]="userAns" value=1>
+          <span class="checkmark"></span> </label>
+
+      <div class="icon" ><i class="fa fa-check"></i></div>
+
+      </div>
+      <div class="option">
+        <label class="options">{{showEachQuestions.optionB}}
+          <input type="radio" name="radio" [(ngModel)]="userAns" value=2>
+          <span class="checkmark"></span> </label>
+
+        <div class="icon" ><i class="fa fa-check"></i></div>
+
+      </div>
+      <div class="option">
+        <label class="options">{{showEachQuestions.optionC}}
+          <input type="radio" name="radio" [(ngModel)]="userAns" value=3>
+          <span class="checkmark"></span> </label>
+
+        <div class="icon" ><i class="fa fa-check"></i></div>
+
+      </div>
+      <div class="option">
+        <label class="options">{{showEachQuestions.optionD}}
+          <input type="radio" name="radio" [(ngModel)]="userAns" value=4>
+          <span class="checkmark"></span> </label>
+
+        <div class="icon" ><i class="fa fa-check"></i></div>
+
+      </div>
+    </div>
+<!--    [ngClass]="{'tick': eachAnswer.correct === true}"-->
+  </section>
+
+  <footer>
+    <div class="total_que">
+      <span><p>{{index+1}}</p>of<p>{{length}}</p>Questions</span>
+    </div>
+    <div class="container d-flex justify-content-end">
+    <button class="btn btn-success me-3" type="button" [disabled]="index===0" (click)="prevQuestion()">prev</button>
+    <button class="btn btn-primary" type="button" [disabled]="index===length-1" (click)="nextQuestion()">next</button>
+    </div>
+    <button class="btn btn-primary " type="submit" [hidden]="index!==length-1" >submit</button>
+
+  </footer>
+    </form>
+</div>
+
+
+<div class="result_box mt-3 ms-2 me-3" [hidden]="showTestResult" >
+  <div class="icon">
+    <i class="fa fa-trophy fa-5x text-warning"></i>
+    <div class="complete_text">You've Completed the Quiz!</div>
+    <div class="score_text">
+      <span>You Got  <p>{{totalScore}}</p> out of <p>10</p></span>
+    </div>
+    <div class="buttons">
+      <button class="btn btn-primary me-3" type="button" routerLink="/startTest">Relpay Quiz</button>
+      <button class="btn btn-secondary" type="button" routerLink="/welcome">Quit Quiz</button>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>

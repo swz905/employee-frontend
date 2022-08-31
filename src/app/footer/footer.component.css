@@ -1,0 +1,42 @@
+.container-footer{
+  /*background: linear-gradient(#cc2b5e ,#753a88);*/
+  width: 100%;
+}
+
+.row{
+  background-color: skyblue;
+}
+.icons-group{
+  underline: none;
+  color: white;
+}
+.fb{
+  border-radius:100%;
+  background-color:#3B5998;
+  width:20px;
+  height:20px;
+}
+.insta{
+  border-radius:100%;
+  background-color:#B7242A;
+  width:20px;
+  height:20px;
+}
+.linkedin{
+  border-radius:100%;
+  background-color:#0976B4;
+  width:20px;
+  height:20px;
+}
+.twitter{
+  border-radius:100%;
+  background-color:#55ACEE;
+  width:20px;
+  height:20px;
+}
+.google{
+  border-radius:100%;
+  background-color:#DD4B39;
+  width:20px;
+  height:20px;
+}

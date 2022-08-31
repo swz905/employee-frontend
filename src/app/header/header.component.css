@@ -1,0 +1,18 @@
+.navbar{
+  box-shadow: 1px 1px 1px 0 rgba(136, 144, 195, 0.2),
+  0 5px 15px 0 rgba(37, 44, 97, 0.15);
+}
+.navbar-brand{
+  /*background: linear-gradient(#cc2b5e ,#753a88);*/
+  /*-webkit-background-clip: text;*/
+  /*-webkit-text-fill-color: transparent;*/
+}
+
+.navTwo{
+  display: flex;
+  flex-direction: row;
+  /*justify-content: center;*/
+  align-items:flex-end;
+  position:absolute;
+  left:70rem;
+}

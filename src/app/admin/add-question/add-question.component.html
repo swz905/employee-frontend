@@ -1,0 +1,100 @@
+<div class="container-fluid mt-3 d-flex justify-content-center" xmlns="http://www.w3.org/1999/html">
+  <div class="card w-100">
+    <h5 class="card-header text-primary">Create Quiz</h5>
+    <div class="card-body">
+      <h5 class="card-title text-secondary">Add Questions Here..</h5>
+      <form #f="ngForm" (ngSubmit)="f.form.valid &&onClickAddQuestion(f)" name="form">
+        <div class="container-fluid">
+          <div class="form-floating">
+        <textarea class="text-area form-control" name="newQuestion" ngModel #questionTag="ngModel"
+                  placeholder="Type Your question Here" id="addQuestion" required></textarea>
+            <label for="addQuestion">Question</label>
+          </div>
+          <hr>
+
+
+          <div class="form-floating mt-3 w-25">
+            <select name="difficulty" ngModel class="form-select" id="floatingSelect"
+                    aria-label="Floating label select example">
+              <option selected value="Easy">Easy</option>
+              <option value="Moderate">Moderate</option>
+              <option value="Challenging">Challenging</option>
+            </select>
+            <label for="floatingSelect">Choose Difficulty Level</label>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <h5 class="card-title mt-3 bg-sec text-secondary ">Add Options Here..</h5>
+
+          <div class="form-floating mb-3 d-flex align-items-center">
+        <textarea  name ="optionA" class="form-control w-50 me-5"
+                  #reference1
+                  id="floatingTextarea1" required></textarea>
+            <label for="floatingTextarea2">optionA</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="enums" value=1 id="exampleRadios1"
+                     [(ngModel)]="radioSelected">
+              <label class="form-check-label me-5" for="exampleRadios1">
+                Correct
+              </label>
+            </div>
+            <button type="button" (click)="reference1.value =''" class="btn  badge badge-lg btn-warning text-dark ms-5 ">Reset
+            </button>
+          </div>
+
+          <div class="form-floating mb-3 d-flex align-items-center">
+        <textarea ngModel name="optionB" class="form-control w-50 me-5"
+                  #reference2
+                  id="floatingTextarea2" required></textarea>
+            <label for="floatingTextarea2">optionB</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="enums" value=2 id="exampleRadios2"
+                     [(ngModel)]="radioSelected">
+              <label class="form-check-label me-5" for="exampleRadios2">
+                Correct
+              </label>
+            </div>
+            <button type="button" (click)="reference2.value =''" class="btn  badge badge-lg btn-warning text-dark ms-5 ">Reset
+            </button>
+          </div>
+          <div class="form-floating mb-3 d-flex align-items-center">
+        <textarea ngModel name="optionC" class="form-control w-50 me-5"
+                  #reference3
+                  id="floatingTextarea3" required></textarea>
+            <label for="floatingTextarea3">optionC</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="enums" value=3 id="exampleRadios3"
+                     [(ngModel)]="radioSelected">
+              <label class="form-check-label me-5" for="exampleRadios3">
+                Correct
+              </label>
+            </div>
+            <button type="button" (click)="reference3.value =''" class="btn  badge badge-lg btn-warning text-dark ms-5 ">Reset
+            </button>
+          </div>
+          <div class="form-floating mb-3 d-flex align-items-center">
+        <textarea ngModel name="optionD" class="form-control w-50 me-5"
+                  #reference4
+                  id="floatingTextarea4" required></textarea>
+            <label for="floatingTextarea4">optionD</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="enums" value=4 id="exampleRadios4"
+                     [(ngModel)]="radioSelected">
+              <label class="form-check-label me-5" for="exampleRadios4">
+                Correct
+              </label>
+            </div>
+            <button type="button" (click)="reference4.value =''" class="btn  badge badge-lg btn-warning text-dark ms-5 ">Reset
+            </button>
+          </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary fw mt-3 me-3">Add Question</button>
+        <button (click)="onClickRemoveQuestion()" type="button" class="btn btn-secondary  text-light mt-3">Remove Question</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+

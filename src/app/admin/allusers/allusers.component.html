@@ -1,0 +1,203 @@
+<!--<div class="container">-->
+<!--  <div class="row" >-->
+<!--    <ul class="list-inline">-->
+<!--      <li *ngFor="let employee of employees">{{employee.email}}</li>-->
+<!--    </ul>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="container" >
+  <div class="card-search card bg-light border border-light mt-3">
+    <div class="card-body">
+      <form class="container d-flex">
+        <button type="button" class="btn btn-secondary text-nowrap me-3">Add Employee</button>
+
+        <input class="form-control me-2" type="search" name=key placeholder="Search Employee,.." aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3" style="min-height:33rem">
+  <div class="row">
+    <div *ngFor="let employee of employees" class="col-md-6 col-xl-3">
+      <div class="card-new card m-b-30 bg-light">
+        <div class="card-body row">
+          <div class="col-6">
+            <i class=" fa fa-user-secret fa-5x img-fluid rounded-circle w-60 text-dark"></i>
+          </div>
+          <div class="col-6 card-title align-self-center mb-0">
+            <h5>{{employee.name}}</h5>
+            <p class="m-0"></p>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{employee.email}} </li>
+          <li class="list-group-item text-dark"><i class="fa fa-phone float-right"></i>{{employee.empType}}</li>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+            <button type="button" class="btn btn-dark rounded "
+                    data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="editManager(employee)" >edit
+            </button>
+            <!-- Modal -->
+
+          </div>
+        </div>
+      </div>
+      <div class="container-new">
+      <div *ngFor="let reportee of employee.reportees;let index = index" class="each-card " >
+        <div class="card-new card m-b-30" [ngStyle]="{'background-color':index%2==0 ? '#f64c72' : '#5cdb95' }">
+          <div class="card-body row">
+            <div class="col-6">
+              <i class=" fa fa-user-circle-o fa-5x img-fluid rounded-circle w-60 text-light"></i>
+            </div>
+            <div class="col-6 card-title align-self-center mb-0">
+              <h5>{{reportee.name}}</h5>
+              <p class="m-0"></p>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"  id = "employee-email" #emailTag>
+              <i class="fa fa-envelope float-right"></i>{{reportee.email}} </li>
+            <li class="list-group-item text-dark"><i class="fa fa-phone float-right"></i>{{reportee.phoneNumber}}</li>
+          </ul>
+          <div class="card-body">
+            <div class="float-right btn-group btn-group-sm">
+              <button type="button" class="btn btn-dark rounded "
+                      data-bs-toggle="modal" data-bs-target="#staticBackdrop2" (click)="editEmployee(reportee)" >edit
+              </button>
+              <button type="button" class="btn btn-dark rounded ms-3 "
+                      data-bs-toggle="modal" data-bs-target="#staticBackdrop3" (click)="getEmployeeEmail(emailTag.innerText)">Assign Test
+              </button>
+
+            </div>
+          </div>
+        </div>
+    </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="modalmodel-1">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Manager</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form #addForm="ngForm">
+          <div class="mb-3">
+            <label for="editName" class="form-label">Name</label>
+            <input type="text" name="editName" [(ngModel)]="editName" class="form-control" id="editName" required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" name = "editEmail" [(ngModel)]="editEmail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+          </div>
+          <div class="mb-3">
+            <label for="editPhone" class="form-label">Phone</label>
+            <input type="text" ngModel name="editPhone" [(ngModel)]="editPhone"  class="form-control" id="editPhone" required>
+          </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button [disabled]="!addForm.valid" type="submit" class="btn btn-secondary" data-bs-dismiss="modal" id="edit-employee-form"  (click)="onModalSubmit(addForm)">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modealmodel-2">
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel2">Edit User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form #addEmployeeForm="ngForm" >
+            <div class="mb-3">
+              <label for="editEmployeeName" class="form-label">Name</label>
+              <input type="text" name="editEmployeeName" [(ngModel)]="editEmployeeName" class="form-control" id="editEmployeeName" required>
+            </div>
+            <div class="mb-3">
+              <label for="editEmployeeEmail" class="form-label">Email address</label>
+              <input type="email" name = "editEmployeeEmail" [(ngModel)]="editEmployeeEmail" class="form-control" id="editEmployeeEmail" aria-describedby="emailHelp" required>
+            </div>
+            <div class="mb-3">
+              <label for="editEmployeePhone" class="form-label">Phone</label>
+              <input type="text" ngModel name="editEmployeePhone" [(ngModel)]="editEmployeePhone"  class="form-control" id="editEmployeePhone" type="text" required>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button [disabled]="!addEmployeeForm.valid" type="submit" class="btn btn-secondary" data-bs-dismiss="modal" id="edit-reportee-form"  (click)="onEmployeeModalSubmit(addEmployeeForm)">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="modalmodel-1">
+  <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+       aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel3">Edit User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container d-flex justify-content-center">
+
+            <div class="card " style="width: 40rem;">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Create New Test</h5>
+                <hr class="bg-primary">
+                <!--    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+                <form class="form-group" #f="ngForm" (ngSubmit)="f.form.valid && onSubmitAddTest(f)" name="form">
+                  <div class="mb-3">
+                    <label for="title" class="form-label fw-bold text-secondary">Add Title</label>
+                    <input type="title" class="form-control" id="title" name="title" placeholder="Title" ngModel required>
+                  </div>
+                  <label  class="form-label fw-bold text-secondary">Difficulty</label>
+
+                  <div class="form-floating mt-3 ">
+                    <select class="form-select" id="difficulty" name="difficulty" ngModel>
+                      <option selected value="easy">Easy</option>
+                      <option value="moderate">Moderate</option>
+                      <option value="challenging">Challenging</option>
+                    </select>
+                    <label for="difficulty">Choose Difficulty Level</label>
+                  </div>
+                  <button [disabled]="!f.valid" type="submit" class="btn btn-secondary"
+                          data-bs-dismiss="modal" id="create-test-form" >Add Test</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+      </div>
+  </div>
+</div>
+

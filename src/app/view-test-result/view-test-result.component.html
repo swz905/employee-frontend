@@ -1,0 +1,103 @@
+<div class="container" style="min-height: 65vh;">
+
+  <div *ngIf="employeeShow === true" name="employeeShow" [ngModel]="employeeShow" ngDefaultControl class="container-fluid mt-5">
+    <div class="row">
+      <div class="col-lg-5" *ngFor="let eachTest of tests;let index = index">
+        <div class="card card-margin">
+          <div class="card-header no-border">
+            <h5 class="card-title">{{eachTest.title}}</h5>
+          </div>
+          <div class="card-body pt-0">
+            <div class="widget-49">
+              <div class="widget-49-title-wrapper">
+                <div class="widget-49-date-primary">
+                  <span class="widget-49-date-day">{{index + 1}}</span>
+                </div>
+                <div class="widget-49-meeting-info">
+                  <span class="widget-49-pro-title">{{eachTest.difficulty}}</span>
+                  <span class="widget-49-meeting-time" [ngStyle]="{'color':eachTest.score >= 10 ? 'green' : 'red' }">
+                  <strong>score   {{eachTest.score}}</strong></span>
+                </div>
+              </div>
+              <div class="widget-49-meeting-action">
+                <a (click)="showQuestions()" class="btn btn-sm btn-flash-border-primary">View All</a>
+              </div>
+              <ol [hidden]="questionList" class="list-group mb-3" *ngFor="let result of eachTest.results;let x= index">
+                <li class="list-group-item "><span>{{x + 1}} .{{result.question}}</span></li>
+                <li class="list-group-item list-group-item-primary"><span>{{result.correct}}</span></li>
+                <li class="list-group-item "
+                    [ngClass]="{'list-group-item-success':result.correct ===result.answerOfUser,
+                   'list-group-item-danger':result.correct !==result.answerOfUser}">
+                  <span>{{result.answerOfUser}}</span></li>
+              </ol>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="managerShow === true" name="managerShow" [ngModel]="managerShow" ngDefaultControl class="container-fluid mt-5">
+    <div class="row">
+      <div class="col-lg-5" *ngFor="let employeeResult of managerEmployeeTestResult;let indexManager = index">
+        <div class="card card-margin">
+          <div class="card-header no-border">
+            <h5 class="card-title">{{employeeResult.name}}</h5>
+          </div>
+          <div class="card-body pt-0">
+            <div class="widget-49">
+              <div class="widget-49-title-wrapper">
+                <div class="widget-49-date-primary">
+                  <span class="widget-49-date-day">{{indexManager + 1}}</span>
+                </div>
+                <div class="widget-49-meeting-info">
+                  <span class="widget-49-pro-title">Employee</span>
+                </div>
+              </div>
+              <div class="widget-49-meeting-action">
+                <a (click)="showManagerEmployeeTestResults()" class="btn btn-sm btn-flash-border-primary">View All</a>
+              </div>
+              <div [hidden]="managerTestResults" class="list-group mb-3"
+                   *ngFor="let eachTest of employeeResult.tests;let index = index" >
+                <div class="card card-margin text-light" style="background:honeydew" >
+                  <div class="card-header no-border">
+                    <h5 class="card-title">{{eachTest.title}}</h5>
+                  </div>
+                  <div class="card-body pt-0">
+                    <div class="widget-49">
+                      <div class="widget-49-title-wrapper">
+                        <div class="widget-49-date-primary">
+                          <span class="widget-49-date-day">{{index + 1}}</span>
+                        </div>
+                        <div class="widget-49-meeting-info">
+                          <span class="widget-49-pro-title">{{eachTest.difficulty}}</span>
+                          <span class="widget-49-meeting-time"
+                                [ngStyle]="{'color':eachTest.score >= 10 ? 'green' : 'red' }">
+                  <strong>score   {{eachTest.score}}</strong></span>
+                        </div>
+                      </div>
+                      <div class="widget-49-meeting-action">
+                        <a (click)="showQuestions()" class="btn btn-sm btn-flash-border-primary">View All</a>
+                      </div>
+                      <ol [hidden]="questionList" class="list-group mb-3"
+                          *ngFor="let result of eachTest.results;let x= index">
+                        <li class="list-group-item "><span>{{x + 1}} .{{result.question}}</span></li>
+                        <li class="list-group-item list-group-item-primary"><span>{{result.correct}}</span></li>
+                        <li class="list-group-item "
+                            [ngClass]="{'list-group-item-success':result.correct ===result.answerOfUser ,
+                                       'list-group-item-danger':result.correct !==result.answerOfUser}">
+                          <span>{{result.answerOfUser}}</span></li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
